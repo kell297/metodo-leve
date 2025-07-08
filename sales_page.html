@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MÉTODO LEVE – EMAGREÇA COM ELEGÂNCIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #f3e8ff 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #be185d;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(190, 24, 93, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #be185d;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: #7c2d12;
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #6b7280;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #be185d 0%, #ec4899 100%);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(190, 24, 93, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(190, 24, 93, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #be185d;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #be185d 0%, #ec4899 100%);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            color: #7c2d12;
+            margin-bottom: 20px;
+        }
+
+        .section p, .section li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Pain Points */
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pain-point {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #be185d;
+        }
+
+        .pain-point:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pain-point h4 {
+            color: #be185d;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Benefits */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit:hover {
+            transform: scale(1.05);
+            border-color: #be185d;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #be185d;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #be185d;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #be185d;
+            margin-top: 15px;
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(135deg, #be185d 0%, #ec4899 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin: 60px 0;
+            border-radius: 20px;
+        }
+
+        .guarantee h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">MÉTODO LEVE</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Cansada de Dietas que Não Funcionam?</h1>
+                <h2>Descubra o MÉTODO LEVE e Emagreça com Elegância, Sem Sacrifícios Extremos!</h2>
+                <p>Transforme seu corpo e mente em 30 dias com um programa completo desenvolvido para mães e mulheres reais que buscam uma vida mais leve, saudável e feliz.</p>
+                <a href="https://pay.kiwify.com.br/QJnlzRh" class="cta-button">Quero Meu Método Leve Agora!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="fade-in">Você se Identifica com Alguma Destas Dores?</h2>
+            <div class="pain-points">
+                <div class="pain-point fade-in">
+                    <h4>🔄 O Ciclo Vicioso das Dietas Restritivas</h4>
+                    <p>Você começa uma dieta com toda a motivação, mas logo se sente privada, faminta e acaba "jacando"? O efeito sanfona se tornou seu companheiro constante, e a cada tentativa frustrada, a culpa e a sensação de fracasso aumentam?</p>
+                </div>
+                <div class="pain-point fade-in">
+                    <h4>⚖️ A Batalha Contra a Balança e o Espelho</h4>
+                    <p>Você se sente desconfortável com seu corpo, evita fotos e se veste com roupas largas para esconder o que não gosta? A cada quilo a mais, a autoestima despenca, e a frustração se torna uma sombra constante?</p>
+                </div>
+                <div class="pain-point fade-in">
+                    <h4>⏰ Falta de Tempo e Rotina Caótica</h4>
+                    <p>Entre o trabalho, a casa, os filhos e mil outras responsabilidades, parece impossível encontrar tempo para cuidar de si mesma e preparar refeições saudáveis? A praticidade dos alimentos processados acaba vencendo, e a culpa por não conseguir se alimentar bem te consome?</p>
+                </div>
+                <div class="pain-point fade-in">
+                    <h4>😰 Ansiedade e Compulsão Alimentar</h4>
+                    <p>Você se pega comendo por estresse, tédio ou tristeza, mesmo sem fome física? A comida se tornou um refúgio para suas emoções, e você se sente impotente diante dos ataques de compulsão?</p>
+                </div>
+                <div class="pain-point fade-in">
+                    <h4>🤕 Inchaço, Dores e Falta de Energia</h4>
+                    <p>Seu corpo parece estar sempre inflamado, com inchaços persistentes, dores articulares e uma fadiga que não te abandona? Você acorda cansada e termina o dia exausta, sem energia para aproveitar a vida?</p>
+                </div>
+                <div class="pain-point fade-in">
+                    <h4>😔 A Frustração de Não Ver Resultados</h4>
+                    <p>Você se esforça, tenta seguir as dicas, mas os resultados demoram a aparecer ou simplesmente não chegam? A desmotivação bate à porta, e você pensa em desistir de vez da sua jornada de emagrecimento?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="fade-in">A Solução que Você Sempre Buscou</h2>
+            <div class="fade-in">
+                <h3>O MÉTODO LEVE – EMAGREÇA COM ELEGÂNCIA</h3>
+                <p>Chega de dietas da moda, de promessas vazias e de se sentir culpada por não conseguir manter o foco. O <strong>MÉTODO LEVE – EMAGREÇA COM ELEGÂNCIA</strong> não é apenas mais um e-book de emagrecimento. É um programa completo, desenvolvido para mulheres e mães reais, que buscam uma transformação profunda e duradoura, sem abrir mão do prazer de viver.</p>
+                
+                <p>Nosso método se baseia em quatro pilares essenciais que trabalham em sinergia para te proporcionar resultados reais e sustentáveis:</p>
+                
+                <div class="benefits">
+                    <div class="benefit fade-in">
+                        <div class="benefit-icon">🔥</div>
+                        <h4>Desinflamação</h4>
+                        <p>Entenda como a inflamação crônica afeta seu corpo e aprenda a combatê-la através de uma alimentação estratégica.</p>
+                    </div>
+                    <div class="benefit fade-in">
+                        <div class="benefit-icon">🧠</div>
+                        <h4>Alimentação Consciente</h4>
+                        <p>Desenvolva uma relação saudável com a comida, aprendendo a ouvir seu corpo e identificar a fome real.</p>
+                    </div>
+                    <div class="benefit fade-in">
+                        <div class="benefit-icon">💪</div>
+                        <h4>Movimento Inteligente</h4>
+                        <p>Descubra que você não precisa passar horas na academia para ter resultados com treinos eficazes.</p>
+                    </div>
+                    <div class="benefit fade-in">
+                        <div class="benefit-icon">🌸</div>
+                        <h4>Equilíbrio Emocional</h4>
+                        <p>Aprenda a gerenciar o estresse e as emoções que muitas vezes sabotam seus esforços.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="fade-in">O Que o MÉTODO LEVE Fará Por Você?</h2>
+            <div class="benefits">
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">⚖️</div>
+                    <h4>Emagrecimento Sustentável</h4>
+                    <p>Diga adeus ao efeito sanfona! Aprenda a emagrecer de forma consistente, sem passar fome.</p>
+                </div>
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Mais Energia e Disposição</h4>
+                    <p>Sinta-se revitalizada desde o primeiro dia com a desinflamação do seu corpo.</p>
+                </div>
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">🌿</div>
+                    <h4>Redução de Inchaço e Dores</h4>
+                    <p>Alivie o desconforto causado pela inflamação crônica e sinta-se mais leve.</p>
+                </div>
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">🧘</div>
+                    <h4>Controle da Ansiedade</h4>
+                    <p>Liberte-se do ciclo vicioso da fome emocional e retome o controle.</p>
+                </div>
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">😊</div>
+                    <h4>Melhora do Humor</h4>
+                    <p>Descubra o poder dos alimentos para equilibrar seu humor e bem-estar.</p>
+                </div>
+                <div class="benefit fade-in">
+                    <div class="benefit-icon">👑</div>
+                    <h4>Autoconfiança Elevada</h4>
+                    <p>Sinta-se linda, poderosa e confiante em sua própria pele!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="fade-in">O Que Você Encontrará Dentro do MÉTODO LEVE?</h2>
+            <div class="fade-in">
+                <h3>📚 Capítulos Completos e Aprofundados</h3>
+                <ul>
+                    <li><strong>Capítulo 1:</strong> Por que você ainda não emagreceu?</li>
+                    <li><strong>Capítulo 2:</strong> Os Pilares do Método Leve</li>
+                    <li><strong>Capítulo 3:</strong> Alimentação Consciente e Nutrição Inteligente</li>
+                    <li><strong>Capítulo 4:</strong> Movimento Inteligente para uma Vida Ativa</li>
+                    <li><strong>Capítulo 5:</strong> Ansiedade, Compulsão e Emoções: Como Lidar</li>
+                    <li><strong>Capítulo 6:</strong> Sua Transformação em 30 Dias</li>
+                </ul>
+
+                <h3>🍽️ Receitas Deliciosas e Variadas</h3>
+                <ul>
+                    <li>Sobremesas Saudáveis</li>
+                    <li>Pães Funcionais</li>
+                    <li>Saladas Criativas e Molhos</li>
+                    <li>Chás, Sucos e Vitaminas Anti-inflamatórios</li>
+                    <li>Receitas para Café da Manhã, Almoço e Jantar</li>
+                    <li>Patês, Cremes e Snacks</li>
+                </ul>
+
+                <h3>🎁 Materiais Complementares Exclusivos</h3>
+                <ul>
+                    <li>Lista de Compras Organizada</li>
+                    <li>Guia de Higienização de Alimentos</li>
+                    <li>Planner Alimentar e Emocional</li>
+                    <li>Manual de Marmitas Saudáveis</li>
+                    <li>Cardápio Semanal para Toda a Família</li>
+                    <li>Checklists Diários</li>
+                    <li>Espaço para Reflexões</li>
+                    <li>Recompensas Saudáveis</li>
+                    <li>Guia para Comer Fora de Casa</li>
+                    <li>Cards Motivacionais</li>
+                    <li><strong>Planilha de Treinos de 30 Dias com Links!</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="fade-in">O Que Nossas Alunas Estão Dizendo</h2>
+            <div class="testimonials">
+                <div class="testimonial fade-in">
+                    <p>Eu estava exausta de tentar dietas e sempre voltar ao mesmo peso. O MÉTODO LEVE me ensinou a comer de verdade, sem culpa, e me deu a energia que eu precisava para cuidar da minha família. Perdi 8kg em 2 meses e me sinto uma nova mulher!</p>
+                    <div class="testimonial-author">- Ana Paula, 35 anos, Mãe e Empresária</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <p>Sempre sofri com ansiedade e descontava tudo na comida. Com as técnicas de regulação emocional e as receitas deliciosas do MÉTODO LEVE, aprendi a lidar com minhas emoções e a fazer escolhas mais saudáveis. Minha vida mudou completamente!</p>
+                    <div class="testimonial-author">- Juliana, 28 anos, Estudante</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <p>A planilha de treinos é incrível! Mesmo com a rotina corrida, consigo fazer os exercícios em casa e já vejo resultados. O e-book é super completo e me deu o empurrão que faltava para começar a me cuidar.</p>
+                    <div class="testimonial-author">- Carla, 42 anos, Profissional Liberal</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" id="cta">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="fade-in">Não Espere Mais para Transformar Sua Vida!</h2>
+                <div class="fade-in">
+                    <p style="font-size: 1.3rem; margin-bottom: 30px; color: #be185d; font-weight: bold;">⚠️ OFERTA ESPECIAL POR TEMPO LIMITADO! ⚠️</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 40px;">As vagas para nossa comunidade exclusiva estão se esgotando rapidamente. Não perca esta oportunidade única!</p>
+                    <a href="https://pay.kiwify.com.br/QJnlzRh" class="cta-button" style="font-size: 1.4rem; padding: 20px 50px;">🚀 QUERO MEU MÉTODO LEVE AGORA! 🚀</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee">
+        <div class="container">
+            <h3 class="fade-in">🛡️ Garantia Incondicional de 7 Dias!</h3>
+            <p class="fade-in">Temos tanta certeza da eficácia do MÉTODO LEVE que oferecemos uma Garantia Incondicional de 7 Dias. Se por qualquer motivo você não se sentir completamente satisfeita, devolvemos 100% do seu dinheiro, sem perguntas. Seu investimento é totalmente seguro!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MÉTODO LEVE – EMAGREÇA COM ELEGÂNCIA. Todos os direitos reservados.</p>
+            <p>Este produto não substitui orientação médica profissional.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation to hero elements
+        const heroElements = document.querySelectorAll('.hero-content > *');
+        heroElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
+
